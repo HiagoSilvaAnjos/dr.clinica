@@ -129,45 +129,55 @@ const SignUpForm = () => {
                   <ul className="mt-2 space-y-1 text-xs">
                     <li
                       className={
-                        /[a-z]/.test(passwordValue)
-                          ? "text-green-600"
-                          : "text-red-600"
+                        passwordValue === ""
+                          ? "text-black"
+                          : /[a-z]/.test(passwordValue)
+                            ? "text-green-600"
+                            : "text-red-600"
                       }
                     >
                       • Pelo menos uma letra minúscula
                     </li>
                     <li
                       className={
-                        /[A-Z]/.test(passwordValue)
-                          ? "text-green-600"
-                          : "text-red-600"
+                        passwordValue === ""
+                          ? "text-black"
+                          : /[A-Z]/.test(passwordValue)
+                            ? "text-green-600"
+                            : "text-red-600"
                       }
                     >
                       • Pelo menos uma letra maiúscula
                     </li>
                     <li
                       className={
-                        /\d/.test(passwordValue)
-                          ? "text-green-600"
-                          : "text-red-600"
+                        passwordValue === ""
+                          ? "text-black"
+                          : /\d/.test(passwordValue)
+                            ? "text-green-600"
+                            : "text-red-600"
                       }
                     >
                       • Pelo menos um número
                     </li>
                     <li
                       className={
-                        /[\W_]/.test(passwordValue)
-                          ? "text-green-600"
-                          : "text-red-600"
+                        passwordValue === ""
+                          ? "text-black"
+                          : /[\W_]/.test(passwordValue)
+                            ? "text-green-600"
+                            : "text-red-600"
                       }
                     >
                       • Pelo menos um caractere especial (ex: #, $, &, ...)
                     </li>
                     <li
                       className={
-                        passwordValue.length >= 8
-                          ? "text-green-600"
-                          : "text-red-600"
+                        passwordValue === ""
+                          ? "text-black"
+                          : passwordValue.length >= 8
+                            ? "text-green-600"
+                            : "text-red-600"
                       }
                     >
                       • Pelo menos 8 caracteres

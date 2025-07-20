@@ -1,21 +1,7 @@
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
+import LoginForm from "./components/login-form";
 import SignUpForm from "./components/sign-up-form";
-
-// const loginSchema = z.object({
-//   email: z.email({ message: "E-mail inválido" }),
-//   password: z
-//     .string()
-//     .min(6, { message: "A senha deve ter pelo menos 6 caracteres" }),
-// });
 
 const AuthenticationPage = () => {
   return (
@@ -30,15 +16,7 @@ const AuthenticationPage = () => {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="login">
-          <Card>
-            <CardHeader>
-              <CardTitle>Login</CardTitle>
-              <CardDescription>Faça login para continuar.</CardDescription>
-            </CardHeader>
-            <CardFooter>
-              <Button>Entrar</Button>
-            </CardFooter>
-          </Card>
+          <LoginForm />
         </TabsContent>
         <TabsContent value="register">
           <SignUpForm />
