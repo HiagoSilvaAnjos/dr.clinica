@@ -57,6 +57,7 @@ const registerSchema = z
 
 const SignUpForm = () => {
   const [passwordValue, setPasswordValue] = useState("");
+  const [emailExistsError, setEmailExistsError] = useState(false);
   const router = useRouter();
 
   const form = useForm<z.infer<typeof registerSchema>>({
@@ -81,7 +82,13 @@ const SignUpForm = () => {
           router.push("/dashboard");
           toast.success("Conta criada com sucesso!");
         },
-        onError: () => {
+        onError: (ctx) => {
+          if (ctx.error.code === "USER_ALREADY_EXISTS") {
+            toast.error("E-mail já cadastrado!");
+            setEmailExistsError(true);
+            setTimeout(() => setEmailExistsError(false), 2000);
+            return;
+          }
           toast.error("Error ao tentar criar sua conta!");
         },
       },
@@ -230,7 +237,7 @@ const SignUpForm = () => {
             <Button
               disabled={form.formState.isSubmitting}
               type="submit"
-              className="w-full cursor-pointer"
+              className={`w-full cursor-pointer ${emailExistsError ? "bg-red-600 hover:bg-red-700" : ""}`}
             >
               {form.formState.isSubmitting ? (
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />

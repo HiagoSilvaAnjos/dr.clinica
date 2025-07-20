@@ -35,6 +35,7 @@ const loginSchema = z.object({
 
 const LoginForm = () => {
   const [passwordValue, setPasswordValue] = useState("");
+  const [loginError, setLoginError] = useState(false);
   const router = useRouter();
 
   const form = useForm<z.infer<typeof loginSchema>>({
@@ -58,6 +59,8 @@ const LoginForm = () => {
         },
         onError: () => {
           toast.error("E-mail ou senha inválidos!");
+          setLoginError(true);
+          setTimeout(() => setLoginError(false), 2000);
         },
       },
     );
@@ -116,7 +119,7 @@ const LoginForm = () => {
             <Button
               disabled={form.formState.isSubmitting}
               type="submit"
-              className="w-full cursor-pointer"
+              className={`w-full cursor-pointer ${loginError ? "bg-red-600 hover:bg-red-700" : ""}`}
             >
               {form.formState.isSubmitting ? (
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
